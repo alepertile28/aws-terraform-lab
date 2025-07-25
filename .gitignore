@@ -1,1 +1,21 @@
 terraform.*
+.terraform/
+# Ignora a pasta local de estado do Terraform
+.terraform/
+
+# Ignora arquivos de estado do Terraform
+*.tfstate
+*.tfstate.backup
+
+# Ignora arquivos de plano de execução
+*.tfplan
+
+# Ignora arquivos de override
+*.override.tf
+*.override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignora logs, caso você salve algum
+*.log
+
