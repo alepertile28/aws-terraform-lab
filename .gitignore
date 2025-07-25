@@ -2,6 +2,7 @@ terraform.*
 .terraform/
 # Ignora a pasta local de estado do Terraform
 .terraform/
+.terraform.lock.hcl
 
 # Ignora arquivos de estado do Terraform
 *.tfstate
