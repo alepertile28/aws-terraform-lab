@@ -19,6 +19,7 @@ resource "aws_instance" "ec2-free-tier" {
   instance_type = var.instance_type
   associate_public_ip_address = true
   user_data = var.user_data
+  
   key_name = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [var.security_group_id] 
   
