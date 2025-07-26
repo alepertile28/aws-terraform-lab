@@ -28,26 +28,26 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./aws-terraform-lab
+       
 
       - name: Terraform Format -check
         run: terraform fmt -check -recursive
-        working-directory: ./aws-terraform-lab
+        
       
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./aws-terraform-lab
+      
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
-        working-directory: ./aws-terraform-lab
+       
 
     # automatically apply changes to branch main/master
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         run: terraform apply -auto-approve tfplan
-        working-directory: ./aws-terraform-lab
+        
 
       - name: Terraform Output
         run: terraform output -json
-        working-directory: ./aws-terraform-lab
+       
