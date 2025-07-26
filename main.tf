@@ -12,7 +12,7 @@ module "my_ec2" {
   instance_type = "t3.micro"
   instance_name = "free-tier-ec2"
   security_group_id = module.security_group.id
-  user_data = null
+  user_data = file("${path.module}/modules/ec2/userdata.sh")
 }
 
 module "security_group" {
