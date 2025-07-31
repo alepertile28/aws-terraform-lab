@@ -101,4 +101,6 @@ services:
 EOF
 
 # Corrigir permissões
-chown -R ec2-user bash -c "cd /home/ec2-user/api-ci-cd && docker compose up -d"
+chown -R ec2-user:ec2-user /home/ec2-user/api-ci-cd
+# Executar o docker-compose da API integrada como ec2-user
+runuser -l ec2-user bash -c "cd /home/ec2-user/api-ci-cd && docker compose up -d"
