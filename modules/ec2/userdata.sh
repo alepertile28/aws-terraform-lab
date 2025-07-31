@@ -84,3 +84,21 @@ chown -R ec2-user:ec2-user /home/ec2-user/votingapp
 
 # Executar o docker-compose como ec2-user
 runuser -l ec2-user bash -c "cd /home/ec2-user/votingapp && docker compose up -d"
+
+# cria diretorio para a API integrada
+mkdir -p /home/ec2-user/api-ci-cd
+
+#criar o docker-compose.yml para a API integrada
+cat > /home/ec2-user/api-ci-cd/docker-compose.yml <<EOF
+version: "3.9"
+
+services:
+  api:
+    image: alepertile28/stats-api:latest
+    ports:
+      - "8000:80"
+    restart: always
+EOF
+
+# Corrigir permissões
+chown -R ec2-user bash -c "cd /home/ec2-user/api-ci-cd && docker compose up -d"
