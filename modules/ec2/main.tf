@@ -14,6 +14,13 @@ resource "local_file" "private_key" {
   file_permission = "0600"
 }
 
+resource "null_resource" "force_recrate" {
+  triggers = {
+    always_run = timestamp()
+  }
+  
+}
+
 resource "aws_instance" "ec2-free-tier" {
   ami                         = var.ami
   instance_type               = var.instance_type
@@ -22,6 +29,9 @@ resource "aws_instance" "ec2-free-tier" {
 
   key_name               = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [var.security_group_id]
+  lifecycle {
+    replace_triggered_by = [ null_resource.force_recrate ]
+  }
 
   tags = {
     Name = var.instance_name
