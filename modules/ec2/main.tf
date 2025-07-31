@@ -29,11 +29,10 @@ resource "aws_instance" "ec2-free-tier" {
 
   key_name               = aws_key_pair.generated_key.key_name
   vpc_security_group_ids = [var.security_group_id]
-  lifecycle {
-    replace_triggered_by = [null_resource.force_recrate]
-  }
 
   tags = {
     Name = var.instance_name
   }
+
+  depends_on = [null_resource.force_recrate]
 }
